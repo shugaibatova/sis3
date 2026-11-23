@@ -11,6 +11,7 @@ permissions:
 env:
   AWS_REGION: eu-north-1
   CFN_STACK_NAME: sis3-copy
+  ECR_REPOSITORY: sis3-main-repository-d9rmmzgamhzo
   IMAGE_TAG: ${{ github.sha }}
 
 jobs:
@@ -36,9 +37,9 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-          docker build -t $ECR_REGISTRY/sis3-main-repository-d9rmmzgamhzo:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/sis3-main-repository-d9rmmzgamhzo:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/sis3-main-repository-d9rmmzgamhzo:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
       - name: Get VPC and Subnets from existing stack
         id: stack-params
