@@ -214,7 +214,7 @@ Resources:
       TaskRoleArn: !GetAtt TaskRole.Arn
       ContainerDefinitions:
         - Name: app
-          Image: !Sub "${Repository.RepositoryUri}:${ImageTag}"
+          Image: !Sub "${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/sis3-main-repository-d9rmmzgamhzo:${ImageTag}"
           Essential: true
           PortMappings:
             - ContainerPort: 80
