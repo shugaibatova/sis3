@@ -11,6 +11,10 @@ Parameters:
   ImageTag:
     Type: String
     Description: Тег Docker-образа в ECR (deploy.sh подставляет git commit)
+  ImageTag:
+    Type: String
+    Default: latest
+    Description: Docker image tag (commit SHA)
   DesiredCount:
     Type: Number
     Default: 1
